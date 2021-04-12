@@ -1,0 +1,68 @@
+<script>
+    function get_random_int(max) {
+        return (Math.floor(Math.random() * max) + 1);
+    }
+
+    function player_input(command) {
+       let player_command = command.toLowerCase();
+       return player_command;
+    }
+
+    function computer_input() {
+        let move = get_random_int(3);
+        //Getting a random number between 1 and 3
+        if (move === 1) {
+            return("rock");
+        }
+        else if (move === 2) {
+            return("paper");
+        }
+        else {
+            return("scissors");
+        }
+    }
+
+    function play_game(command) {
+        let player = player_input(command);
+        let computer = computer_input();
+        console.log(`You: ${player}`);
+        console.log(`Computer: ${computer}`);
+        check_winner(player, computer);
+    }
+
+    function check_winner(player, computer) {
+        if (player === computer) {
+                declare_winner("Nobody");
+        }
+
+        else if (player === "rock") {
+            if (computer === "scissors") {
+                declare_winner("Player");
+            }
+            else declare_winner("Computer");
+        } 
+        
+        else if (player === "paper") {
+            if (computer === "rock") {
+                declare_winner("Player");
+            }
+            else declare_winner("Computer");
+        }
+        
+        else if (player === "scissors") {
+            if (computer === "paper") {
+                declare_winner("Player");
+            }
+            else declare_winner("Computer");
+        }
+        
+        else {
+            console.log("Please enter rock, paper, or scissors.");
+        }
+    }
+
+    function declare_winner(person) {
+        console.log(`${person} wins!`)
+    }
+
+</script>
