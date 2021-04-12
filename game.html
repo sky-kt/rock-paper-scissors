@@ -3,9 +3,10 @@
         return (Math.floor(Math.random() * max) + 1);
     }
 
-    function player_input(command) {
-       let player_command = command.toLowerCase();
-       return player_command;
+    function player_input() {
+        player_command = window.prompt('Rock, paper, or scissors?');
+        let lowercase_command = player_command.toLowerCase();
+        return lowercase_command;
     }
 
     function computer_input() {
@@ -22,47 +23,52 @@
         }
     }
 
-    function play_game(command) {
-        let player = player_input(command);
+    function play_game() {
+        let player = player_input();
         let computer = computer_input();
-        console.log(`You: ${player}`);
-        console.log(`Computer: ${computer}`);
+        // console.log(`You: ${player}`);
+        // console.log(`Computer: ${computer}`);
         check_winner(player, computer);
     }
 
     function check_winner(player, computer) {
         if (player === computer) {
-                declare_winner("Nobody");
+            declare_winner("Nobody", player, computer);
         }
 
         else if (player === "rock") {
             if (computer === "scissors") {
-                declare_winner("Player");
+                declare_winner("Player", player, computer);
             }
-            else declare_winner("Computer");
+            else declare_winner("Computer", player, computer);
         } 
         
         else if (player === "paper") {
             if (computer === "rock") {
-                declare_winner("Player");
+                declare_winner("Player", player, computer);
             }
-            else declare_winner("Computer");
+            else declare_winner("Computer", player, computer);
         }
         
         else if (player === "scissors") {
             if (computer === "paper") {
-                declare_winner("Player");
+                declare_winner("Player", player, computer);
             }
-            else declare_winner("Computer");
+            else declare_winner("Computer", player, computer);
         }
         
         else {
-            console.log("Please enter rock, paper, or scissors.");
+            console.log("Invalid input.");
         }
     }
 
-    function declare_winner(person) {
-        console.log(`${person} wins!`)
+    function declare_winner(winner, player, computer) {
+        alert(`
+        You: ${player}
+        Computer: ${computer}
+        ${winner} wins!
+        `);
     }
 
+    play_game();
 </script>
