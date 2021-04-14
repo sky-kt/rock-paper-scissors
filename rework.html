@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <header>
+        <title>Rock, Paper, Scissors</title>
+
         <style>
             .center {
                 width: 100%;
@@ -10,19 +12,46 @@
                 transform: translate(-50%, -50%);
             }
 
+            h1 {
+                text-align: center;
+                font-family: 'Courier New', Courier, monospace;
+                color: rgb(0, 26, 255);
+            }
+
+            p {
+                text-align: center;
+                font-family: 'Courier New', Courier, monospace;
+                color: rgb(0, 26, 255);
+            }
+
+            body {
+                background-image: linear-gradient(to right, rgb(28, 191, 212), rgb(206, 47, 193));
+            }
+
             .button {
-                width: 250px;
+                width: 500px;
                 height: 50px;
+                font-family: 'Courier New', Courier, monospace;
+                margin: 10px auto;
+                border-radius: 7px;
+            }
+
+            .button:hover {
+                width: 550px;
+                height: 65px;
+                background-color: greenyellow;
             }
 
             #center-buttons {
                 display: flex;
-                justify-content: space-around;
+                justify-content: space-between;
+                align-items: center;
             }
-            
         </style>
     </header>
     <body>
+        <h1>Rock, Paper, Scissors</h1>
+        <p id="winner"></p>
         <div class="center">
             <div id="center-buttons">
                 <button id="rock" class="button">Rock</button>
@@ -33,20 +62,22 @@
     </body>
     <footer>
         <script>
-            let input;
+            let player_input;
+            let computer_input;
+
             function input_rock() {
-               input = "rock"; 
-               console.log(input);
+                player_input = "rock"; 
+                computer_random();
             }
 
             function input_paper() {
-                input = "paper";
-               console.log(input);
+                player_input = "paper";
+                computer_random();
             }
 
             function input_scissors() {
-                input = "scissors";
-               console.log(input);
+                player_input = "scissors";
+                computer_random();
             }
 
             const rock = document.getElementById("rock");
@@ -56,6 +87,74 @@
             rock.addEventListener("click", input_rock);
             paper.addEventListener("click", input_paper);
             scissors.addEventListener("click", input_scissors);
+
+            function get_random_int(max) {
+                return (Math.floor(Math.random() * max) + 1);
+            }
+
+            function computer_random() {
+                let move = get_random_int(3);
+                //Getting a random number between 1 and 3
+                if (move === 1) {
+                    computer_input = "rock";
+                }
+                else if (move === 2) {
+                    computer_input = "paper";
+                }
+                else {
+                    computer_input = "scissors";
+                }
+                determine_winner();
+            }
+
+            function determine_winner() { 
+                if (player_input === computer_input) {
+                    display_winner("You tied!", computer_input, player_input)
+                }
+
+                else if (player_input === "rock") {
+                    if (computer_input === "scissors") {
+                        display_winner("You won!", computer_input, player_input);
+                    }
+                    else {
+                        display_winner("You lost!", computer_input, player_input);
+                    }
+                } 
+                
+                else if (player_input === "paper") {
+                    if (computer_input === "rock") {
+                        display_winner("You won!", computer_input, player_input);
+                    }
+                    else {
+                        display_winner("You lost!", computer_input, player_input);
+                    } 
+                }
+                
+                else if (player_input === "scissors") {
+                    if (computer_input === "paper") {
+                        display_winner("You won!", computer_input, player_input);
+                    }
+                    else {
+                        display_winner("You lost!", computer_input, player_input);
+                    } 
+                }
+                
+                else {
+                    console.log("Error! Invalid input.");
+                }
+            }
+
+            const winner_display = document.getElementById("winner");
+
+            function display_winner(message, computer_input, player_input) {
+                winner_display.textContent = `
+                You went ${player_input}!
+                The computer went ${computer_input}!
+                ${message}
+                `;
+            }
+
+
         </script>
     </footer>
 </html>
