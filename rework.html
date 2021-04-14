@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <style>
+            .center {
+                width: 100%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .button {
+                width: 250px;
+                height: 50px;
+            }
+
+            #center-buttons {
+                display: flex;
+                justify-content: space-around;
+            }
+            
+        </style>
+    </header>
+    <body>
+        <div class="center">
+            <div id="center-buttons">
+                <button id="rock" class="button">Rock</button>
+                <button id="paper" class="button">Paper</button>
+                <button id="scissors" class="button">Scissors</button>
+            </div>
+        </div>
+    </body>
+    <footer>
+        <script>
+            let input;
+            function input_rock() {
+               input = "rock"; 
+               console.log(input);
+            }
+
+            function input_paper() {
+                input = "paper";
+               console.log(input);
+            }
+
+            function input_scissors() {
+                input = "scissors";
+               console.log(input);
+            }
+
+            const rock = document.getElementById("rock");
+            const paper = document.getElementById("paper");
+            const scissors = document.getElementById("scissors")
+            
+            rock.addEventListener("click", input_rock);
+            paper.addEventListener("click", input_paper);
+            scissors.addEventListener("click", input_scissors);
+        </script>
+    </footer>
+</html>
