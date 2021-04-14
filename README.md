@@ -1,7 +1,5 @@
-This game works by entering the command 
-"play_game()" into the console tab of a
-web browser.
-Insert rock, paper, or scissors inside 
-of the parenthesises. 
-The computer will choose one of the
-three as well.
+This game prompts users to input
+rock, paper or scissors.
+The game then randomly chooses 
+between the three.
+Afterwards, the winner is decided.
